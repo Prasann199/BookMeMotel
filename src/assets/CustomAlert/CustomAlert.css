@@ -1,0 +1,16 @@
+.alertmodel{
+    transition: all ease-in-out 1s;
+    animation: myMove 0.6s ;
+}
+
+@keyframes myMove {
+    0%{
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0%);
+    }
+
+}
