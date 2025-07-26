@@ -36,7 +36,7 @@ const DashBoard = () => {
           showStatus={false}
           interval={3000}
           transitionTime={500}
-          swipeable
+          swipeable={false}
           emulateTouch
           className="absolute top-0 left-0 w-full h-full z-0"
         >
