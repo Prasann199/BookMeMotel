@@ -90,7 +90,7 @@ const GetAllRooms = () => {
         <div
           className="min-w-fit max-w-full max-w-7xl  grid gap-6"
           style={{
-            gridTemplateColumns: "repeat(auto-fit, minmax(390px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))",
             padding: "5px",
             margin: "25px auto 0px auto"
           }}
@@ -124,7 +124,7 @@ const GetAllRooms = () => {
               className="border rounded-md shadow-md p-4"
               style={{
                 width: "32.5%",
-                minWidth: "400px",
+                minWidth: "370px",
                 maxWidth: "450px",
                 marginBottom: "30px",
                 border: "1px solid #ccc",
