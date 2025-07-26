@@ -28,9 +28,10 @@ const FoodIncomeChart = () => {
                 setAlertMessage("Fetching Food Income Data Failed");
             }
         }
-    
+        
         useEffect(()=>{
             handleFetchFoodIncome();
+            
         },[])
 
   return (

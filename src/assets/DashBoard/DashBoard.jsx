@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import "../../assets/DashBoard/DashBoard.css";
 import { Link, useNavigate } from 'react-router-dom';
@@ -11,6 +11,8 @@ const DashBoard = () => {
 
   const handleLogin = () => navigate("/login");
   const handleRegister = () => navigate("/register");
+
+    
 
   return (
     <div className="snap-y snap-mandatory overflow-y-scroll bg-gray-50 font-sans">

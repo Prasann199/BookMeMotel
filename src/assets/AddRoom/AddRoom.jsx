@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../Navbar/Navbar';
 import CustomAlert from '../CustomAlert/CustomAlert';
@@ -88,6 +88,9 @@ const AddRoom = () => {
       setAlertMessage('Error in adding room! ',error);
     }
   };
+
+
+  
 
   return (
     <>
@@ -214,7 +217,7 @@ const AddRoom = () => {
             <div className="sm:col-span-2">
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-blue-600 to-teal-600 text-white py-3 rounded-lg hover:from-blue-700 hover:to-teal-700 transition"
+                className="w-full bg-gradient-to-r from-blue-600 to-teal-600 text-white py-3 rounded-lg hover:from-blue-700 hover:to-teal-700 transition font-semibold" style={{padding:"3px"}}
               >
                 Add Room
               </button>

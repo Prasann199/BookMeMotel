@@ -64,10 +64,12 @@ const GetAllRooms = () => {
   const handleBooking = (roomhandle) => {
     navigate("/roomBooking?myProperty=" + roomhandle)
   }
+ 
   useEffect(() => {
     // console.log("calling..")
     setUser(JSON.parse(atob(sessionStorage.getItem("user"))));
     handlefetchAllRooms();
+    
   }, [])
 
   return (

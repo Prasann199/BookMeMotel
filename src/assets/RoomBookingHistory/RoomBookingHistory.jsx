@@ -44,6 +44,8 @@ const RoomBookingHistory = () => {
     }
   };
 
+
+
   const handleFetchHistory = async () => {
     const API_URL = import.meta.env.VITE_API_URL;
     try {
@@ -88,9 +90,10 @@ const RoomBookingHistory = () => {
             <table className="min-w-full text-sm border-collapse table-auto">
               <thead className="bg-gray-100 sticky top-0 z-10">
                 <tr className="text-gray-900 font-medium text-left">
-                  <th className="px-4 py-3 border border-gray-300 whitespace-nowrap text-center">Handle</th>
-                  <th className="px-4 py-3 border border-gray-300 whitespace-nowrap text-center">User</th>
-                  <th className="px-4 py-3 border border-gray-300 whitespace-nowrap text-center">Room</th>
+                  <th className="px-4 py-3 border border-gray-300 whitespace-nowrap text-center">usernme</th>
+                  <th className="px-4 py-3 border border-gray-300 whitespace-nowrap text-center">Room Number</th>
+                  <th className="px-4 py-3 border border-gray-300 whitespace-nowrap text-center">Email</th>
+                  <th className="px-4 py-3 border border-gray-300 whitespace-nowrap text-center">Phone</th>
                   <th className="px-4 py-3 border border-gray-300 whitespace-nowrap text-center">Check In</th>
                   <th className="px-4 py-3 border border-gray-300 whitespace-nowrap text-center">Check Out</th>
                   <th className="px-4 py-3 border border-gray-300 whitespace-nowrap text-center">Total Days</th>
@@ -102,9 +105,10 @@ const RoomBookingHistory = () => {
               <tbody>
                 {(searched.length>0?searched:bookingHistory).map((history, idx) => (
                   <tr key={idx} className="text-gray-700 text-left hover:bg-gray-50">
-                    <td className="px-4 py-2 border">{history.handle}</td>
-                    <td className="px-4 py-2 border">{history.userHandle?.name}</td>
-                    <td className="px-4 py-2 border">{history.roomHandle?.roomNumber}</td>
+                    <td className="px-4 py-2 border">{history.username}</td>
+                    <td className="px-4 py-2 border">{history.roomNumber}</td>
+                    <td className="px-4 py-2 border">{history.email}</td>
+                    <td className="px-4 py-2 border">{history.phone}</td>
                     <td className={`px-4 py-2 border `}>{history.checkInDateTime}</td>
                     <td className="px-4 py-2 border">{history.checkOutDateTime}</td>
                     <td className="px-4 py-2 border">{history.totalDays}</td>

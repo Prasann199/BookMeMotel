@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import axios from 'axios';
 import MyBarChart from '../MyBarChart/MyBarChart';
@@ -40,7 +40,7 @@ const CustomIncomeChart = () => {
                 endingMonth: endMonth ? `${endMonth}T00:00:00` : endMonth,
                 startingDate: startDate ? `${startDate}T00:00:00` : startDate,
                 endingDate: endDate ? `${endDate}T00:00:00` : endDate
-            })
+            },{withCredentials:true})
             // console.log(response.data);
             // alert(response.data);
             setCustomChart(response.data);

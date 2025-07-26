@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import Navbar from '../Navbar/Navbar';
 import CustomAlert from '../CustomAlert/CustomAlert';
@@ -16,6 +16,7 @@ const AddFood = () => {
   const [alertType,setAlertType]=useState("");
   const [alertMessage,setAlertMessage]=useState("");
 
+  
   const handleImageUpload = (event) => {
     const files = Array.from(event.target.files);
 
@@ -50,7 +51,7 @@ const AddFood = () => {
         description:description,
         image: JSON.stringify(imageBase64),
         available:available,
-      });
+      },{withCredentials:true});
       if (response.data === 'food added successfully!') {
         // alert('Food added successfully!');
         setShowAlert(true)
@@ -95,6 +96,7 @@ const AddFood = () => {
     }
   };
 
+ 
   return (
     <>
     {showAlert &&
@@ -102,7 +104,7 @@ const AddFood = () => {
               }
     <Navbar />
     <div className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 min-h-screen flex items-center justify-center h-[100%]" style={{padding:"14vh 15px 15px 15px"}}>
-      <div className="bg-white w-full max-w-xl p-8 rounded-xl shadow-xl transform transition-all duration-500 hover:scale-105 hover:shadow-2xl" style={{padding:"15px"}}>
+      <div className="bg-white w-full max-w-xl p-8 rounded-xl shadow-xl transform transition-all duration-500 " style={{padding:"15px"}}>
         <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">Add Food</h1>
         <form ref={formRef} className="space-y-6" onSubmit={handleAddFood}>
           {/* Food Name Field */}
@@ -202,7 +204,8 @@ const AddFood = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-pink-600 to-red-600 text-white py-4 rounded-lg hover:from-pink-700 hover:to-red-700 transition duration-300"
+            className="w-full bg-gradient-to-r from-pink-600 to-red-600 text-white py-4 rounded-lg hover:from-pink-700 hover:to-red-700 transition duration-300 font-semibold"
+            style={{padding:"3px"}}
           >
             Add Food
           </button>

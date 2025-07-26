@@ -12,6 +12,8 @@ const RoomIncomeChart = () => {
     const [alertType,setAlertType]=useState("");
     const [alertMessage,setAlertMessage]=useState("");
     
+  
+
     const handleFetchRoomIncome=async()=>{
       const API_URL = import.meta.env.VITE_API_URL;
         try{

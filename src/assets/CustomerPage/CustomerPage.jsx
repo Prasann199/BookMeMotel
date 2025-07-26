@@ -17,6 +17,7 @@ const CustomerPage = () => {
   const [alertMessage, setAlertMessage] = useState("");
   const [active, setActive] = useState("customer Page");
 
+
   useEffect(() => {
       if (!sessionStorage.getItem("customerPageReloaded")) {
         sessionStorage.setItem("customerPageReloaded", "true");

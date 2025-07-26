@@ -31,6 +31,9 @@ const UpdateRoom = () => {
     "Gym",
   ];
 
+
+ 
+
   const handleImageUpload = (event) => {
     const files = Array.from(event.target.files);
     const promises = files.map(file => {
@@ -127,7 +130,7 @@ const UpdateRoom = () => {
           type={alertType}
           message={alertMessage}
           action={alertAction}
-          onClose={() => setShowAlert(false)}
+          onClose={() => {setShowAlert(false),handleGetRoom()}}
         />
       }
 

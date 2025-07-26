@@ -25,21 +25,7 @@ const RoomBooking = () => {
   const [alertMessage, setAlertMessage] = useState("");
   const [alertAction, setAlertAction] = useState(null);
 
-  const fetchProfile = async () => {
-    const API_URL = import.meta.env.VITE_API_URL;
-    try {
-      const response = await axios.get(`${API_URL}/user/profile`, { withCredentials: true });
-      // console.log("Profile data: ", response.data);
-      setUser(response.data);
-    } catch (error) {
-      // console.log(error);
-      // alert(error);
-      setShowAlert(true)
-      setAlertType("failed")
-      setAlertMessage("Failed to fetch profile data!");
-      setAlertAction(null);
-    }
-  };
+
 
   const fetchRoom = async () => {
     const API_URL = import.meta.env.VITE_API_URL;
@@ -149,6 +135,13 @@ const RoomBooking = () => {
 
   const handleCheckout = async (event, checkIn, checkOut, totalPrice, totalDays, roomDetail) => {
     const API_URL = import.meta.env.VITE_API_URL;
+    if(user.name==null){
+      setShowAlert(true)
+      setAlertType("failed")
+      setAlertMessage("User Not Present or User Been Deleted! ");
+      // console.log(err);
+      setAlertAction(null);
+    }
     try {
       const { data } = await axios.post(`${API_URL}/payment/createOrder`, {
         amount: totalPrice * 100
@@ -214,7 +207,7 @@ const RoomBooking = () => {
 
   useEffect(() => {
     fetchRoom();
-    fetchProfile();
+    setUser(JSON.parse(atob(sessionStorage.getItem("user"))));
   }, []);
 
   return (

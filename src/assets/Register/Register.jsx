@@ -3,6 +3,7 @@ import "../Register/Register.css";
 import axios from 'axios';
 import { FaEye } from "react-icons/fa";
 import CustomAlert from '../CustomAlert/CustomAlert';
+import Navbar from '../Navbar/Navbar';
 
 const Register = () => {
   const formRef = useRef(null);
@@ -75,7 +76,8 @@ const Register = () => {
     {showAlert &&
     <CustomAlert type={alertType}  message={alertMessage} onClose={() => setShowAlert(false)}/>
     }
-    <div className="min-h-screen bg-gradient-to-br from-pink-200 via-white to-blue-200 flex items-center justify-center px-4 py-8" style={{padding:"10px"}}>
+    <Navbar />
+    <div className="min-h-screen bg-gradient-to-br from-pink-200 via-white to-blue-200 flex items-center justify-center px-4 py-8" style={{padding:"10px",paddingTop:"14vh"}}>
       <div
         className="w-full max-w-xl bg-white rounded-2xl shadow-2xl flex flex-col justify-center items-center"
         style={{ padding: '1.5rem 1rem' }}

@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import CustomAlert from '../CustomAlert/CustomAlert';
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState("");
     const navigate = useNavigate();
+    const [showAlert, setShowAlert] = useState(false);
+      const [alertType, setAlertType] = useState("");
+      const [alertMessage, setAlertMessage] = useState("");
 
     const handleForgotPassword = async (e) => {
         const API_URL = import.meta.env.VITE_API_URL;
@@ -15,23 +19,32 @@ const ForgotPassword = () => {
                 `${API_URL}/password-reset/forgot-password`,
                 { email:email }
             );
-            console.log(response.data);
+            // console.log(response.data);
             if(response.data==="OTP sent to your email!"){
-                alert(response.data);  
-                navigate(`/verifyOtp/${email}`);
+                // alert(response.data);  
+                setShowAlert(true)
+                setAlertType("success")
+                setAlertMessage(response.data);
+                
             }else{
-                console.log("Failed to send OTP. Please try again.");       
-                alert("Failed to send OTP. Please try again.");
+                setShowAlert(true)
+                setAlertType("failed")
+                setAlertMessage("Failed to send OTP. Please try again.");
 
             }
         } catch (error) {
-            console.log(error);
-            alert("Failed to send OTP. Please try again.");
+            // console.log(error);
+            // alert("Failed to send OTP. Please try again.");
+            setShowAlert(true)
+            setAlertType("failed")
+            setAlertMessage("Failed to send OTP. Please try again.",error.message);
         }
     };
 
     return (
-        <>
+        <>{showAlert &&
+        <CustomAlert type={alertType} message={alertMessage} onClose={() => {alertType==="success"?(setShowAlert(false),navigate(`/verifyOtp/${email}`)):setShowAlert(false)}} />
+      }
             <Navbar />
             <div
                 className="w-full flex flex-col items-center"
@@ -56,7 +69,7 @@ const ForgotPassword = () => {
 
                         <div
                             className="flex gap-2 w-full justify-center"
-                            style={{ marginBottom: "10px" }}
+                            style={{ marginBottom: "5px" }}
                         >
                             <input
                                 type="email"
@@ -69,14 +82,14 @@ const ForgotPassword = () => {
                             />
                         </div>
 
-                        <p className="text-sm">
+                        {/* <p className="text-sm">
                             If you didn't receive a code,&nbsp;
                             <a href="#" className="text-blue-700 font-semibold">
                                 Resend
                             </a>
-                        </p>
+                        </p> */}
 
-                        <div className="w-full" style={{ marginTop: "10px" }}>
+                        <div className="w-full" style={{ marginTop: "5px" }}>
                             <button
                                 onClick={handleForgotPassword}
                                 className="bg-orange-500 w-full rounded-2xl font-semibold text-white"

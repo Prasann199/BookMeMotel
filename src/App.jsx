@@ -28,6 +28,10 @@ import ForgotPassword from './assets/ForgotPassword/ForgotPassword';
 import ChangePassword from './assets/ChangePassword/ChangePassword';
 import CustomAlert from './assets/CustomAlert/CustomAlert';
 import AdminRegister from './assets/AdminRegister/AdminRegister';
+import GetAllUsers from './assets/GetAllUsers/GetAllUsers';
+import ProfilePage from './assets/ProfilePage/ProfilePage';
+import DeleteAccount from './assets/DeleteAccount/DeleteAccount';
+
 function App() {
   
 
@@ -62,6 +66,9 @@ function App() {
         <Route path='/forgotPassword' element={<ForgotPassword />}/>
         <Route path='/changePassword/:email' element={<ChangePassword />}/>
         <Route path='/alert' element={<CustomAlert />}/>
+        <Route path='/getAllUsers' element={<GetAllUsers />}/>
+        <Route path='/profilePage' element={<ProfilePage />}/>
+        <Route path='/deleteAccount' element={<DeleteAccount />}/>
       </Routes>
       
       </BrowserRouter>

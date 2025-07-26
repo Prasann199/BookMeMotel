@@ -2,12 +2,17 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { FaEye } from 'react-icons/fa';
 import { useNavigate, useParams } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
+import CustomAlert from '../CustomAlert/CustomAlert';
 
 const ChangePassword = () => {
     const [password,setPassword]=useState("");
     const [conpassword,setConpassword]=useState("");
     const {email}=useParams();
     const navigate=useNavigate();
+    const [showAlert, setShowAlert] = useState(false);
+      const [alertType, setAlertType] = useState("");
+      const [alertMessage, setAlertMessage] = useState("");
 
     const [showPassword, setShowPassword] = useState(false);
     const [showconPassword,setShowConPassword]=useState(false);
@@ -26,19 +31,35 @@ const ChangePassword = () => {
           if(password===conpassword && password.length>6 && conpassword.length>6){
             console.log("Password accepted! ",password)
             const response=await axios.post(`${API_URL}/user/change/password`,{email:email,password:password});
-            console.log(response.data);
-            alert(response.data);
-            navigate("/login")
+            // console.log(response.data);
+            // alert(response.data);
+            setShowAlert(true)
+            setAlertType("success")
+            setAlertMessage(response.data);
+          
+            
+
           }else{
-            alert("Please enter password of length greater then 6 and please confirm with same password!")
+            // alert("Please enter password of length greater then 6 and please confirm with same password!")
+            setShowAlert(true)
+            setAlertType("failed")
+            setAlertMessage("Please enter password of length greater then 6 and please confirm with same password!");
           }
         }catch(error){
-            console.log(error);
-            alert(error);
+            // console.log(error);
+            // alert(error);
+            setShowAlert(true)
+            setAlertType("failed")
+            setAlertMessage(error.message);
         }
     }
+
+    
   return (
-    <>
+    <>{showAlert &&
+        <CustomAlert type={alertType} message={alertMessage} onClose={() => {setShowAlert(false),navigate("/login")} }/>
+      }
+      <Navbar />
     <div>
          <div
                 className="w-full flex flex-col items-center"

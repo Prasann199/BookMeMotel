@@ -29,6 +29,8 @@ const UpdateFood = () => {
     handleGetFood();
   }, []);
 
+
+
   const handleGetFood = async () => {
     const API_URL = import.meta.env.VITE_API_URL;
     try {
@@ -108,7 +110,7 @@ const UpdateFood = () => {
         available,
         category,
         image: JSON.stringify(combinedImages),
-      });
+      },{withCredentials:true});
 
       // alert('Food updated successfully');
       setShowAlert(true)

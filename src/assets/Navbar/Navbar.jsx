@@ -98,7 +98,9 @@ const Navbar = () => {
     if (storedUserEncoded) {
       const parsedUser = JSON.parse(atob(storedUserEncoded));
       setUser(parsedUser);
-      setUsername(parsedUser.name);
+      if(parsedUser){
+        setUsername(parsedUser.name);
+      }
     }
 
     if (storedRoomEncoded) {
@@ -193,7 +195,7 @@ const Navbar = () => {
                 </div>
               )}
               {username && (
-                <div className="flex items-center gap-2 text-sm">
+                <div className="flex items-center gap-2 text-sm cursor-pointer" onClick={()=>{navigate("/profilePage",{state:user})}}>
                   <FaUserCircle className="text-xl" />
                   <span>{username}</span>
                 </div>

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import CustomAlert from '../CustomAlert/CustomAlert';
@@ -13,11 +13,12 @@ const ViewAllBookings = () => {
   const [phone, setPhone] = useState("");
   const [searched,setSearched]=useState([]);
   const navigate = useNavigate();
-
+  const tableRef=useRef();
   const [showAlert, setShowAlert] = useState(false);
     const [alertType, setAlertType] = useState("");
     const [alertMessage, setAlertMessage] = useState("");
     const [alertAction, setAlertAction] = useState(null);
+    const [reRender,setReRender]=useState(false)
   
 
   const handleFetchBookingByDetails=async()=>{
@@ -31,12 +32,20 @@ const ViewAllBookings = () => {
         roomNumber,
         phone
       }, { withCredentials: true });
-      console.log(response.data);
+      // console.log(response.data);
       setSearched(response.data);
+      setShowAlert(true)
+      setAlertType("success")
+      setAlertMessage("Booking details fetched successfully!");
+      setAlertAction(null);
     
     } catch (error) {
       console.error(error);
-      alert("Error fetching filtered history.");
+      // alert("Error fetching filtered history.");
+      setShowAlert(true)
+          setAlertType("failed")
+          setAlertMessage("Error fetching filtered details!");
+          setAlertAction(null);
     }
   }
 
@@ -73,6 +82,7 @@ const ViewAllBookings = () => {
           setAlertType("success")
           setAlertMessage("Booking deleted successfully!");
           setAlertAction(null);
+          setReRender(true)
       }else{
         setShowAlert(true)
           setAlertType("failed")
@@ -104,7 +114,7 @@ const ViewAllBookings = () => {
       setAlertAction(null);
     }
   };
-
+  
   useEffect(() => {
     fetchRoomBookings();
   }, []);
@@ -117,14 +127,14 @@ const ViewAllBookings = () => {
           message={alertMessage}
           action={alertAction}
           onClose={() => alertType==='success'?(setShowAlert(false),
-          window.location.reload()):setShowAlert(false)}
+          (reRender && fetchRoomBookings())):setShowAlert(false)}
         />
       }
       <Navbar />
       <div className="min-h-screen w-full mt-[90px] px-4 py-6" style={{ paddingTop: "14vh" }}>
         <h1 className="text-2xl font-bold text-center mb-6" style={{margin:"30px"}}>View All Bookings</h1>
 
-        <div className="flex flex-wrap gap-6 justify-center mb-6 bg-white p-4 rounded">
+        <div className="flex flex-wrap gap-6 justify-center mb-6 bg-white p-4 rounded" style={{padding:"10px"}}>
             <input type="text" placeholder="Name" className="border px-3 py-1 rounded-md w-full sm:w-[18%]" onChange={(e) => setName(e.target.value)} style={{padding:"0px 5px"}}/>
             <input type="text" placeholder="Phone" className="border px-3 py-1 rounded-md w-full sm:w-[18%]" onChange={(e) => setPhone(e.target.value)} style={{padding:"0px 5px"}}/>
             <input type="text" placeholder="Room Number" className="border px-3 py-1 rounded-md w-full sm:w-[18%]" onChange={(e) => setRoomNumber(e.target.value)} style={{padding:"0px 5px"}}/>
@@ -134,7 +144,7 @@ const ViewAllBookings = () => {
           </div>
 
         <div className="overflow-x-auto bg-white shadow rounded-lg" style={{ padding: "20px 10px",scrollbarWidth:"none" }}>
-          <table className="min-w-full divide-y divide-gray-800 border border-gray-800">
+          <table className="min-w-full divide-y divide-gray-800 border border-gray-800" ref={tableRef}>
             <thead className="bg-blue-200 text-gray-900 text-sm font-semibold">
               <tr>
                 <th className="px-3 py-2 whitespace-nowrap border border-gray-800">Handle</th>

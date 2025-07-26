@@ -46,15 +46,17 @@ const ChiefCounter = () => {
             alert(error);
         }
     }
+
     useEffect(() => {
         handleFetchOrders();
+       
     }, [])
 
     return (
         <>
         {showAlert &&
   <CustomAlert type={alertType}  message={alertMessage} onClose={() => {setShowAlert(false)
-    window.location.reload()
+    handleFetchOrders()
   }}/>
   }
             <Navbar />

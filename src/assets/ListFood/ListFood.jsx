@@ -141,12 +141,13 @@ const ListFood = () => {
       setAlertAction(false);
     }
   };
-
+  
   useEffect(() => {
     const storedRoom = sessionStorage.getItem("room");
     setUser(JSON.parse(atob(sessionStorage.getItem("user"))));
     handlefetchAllFoods();
     if (storedRoom) setRoomNumber(JSON.parse(atob(storedRoom)));
+    
   }, []);
 
   return (
@@ -161,12 +162,12 @@ const ListFood = () => {
             : undefined
         } onClose={() => {
           setShowAlert(false)
-          window.location.reload()
+          handlefetchAllFoods();
         }
         } />
       }
       <Navbar />
-      <div className="px-4 py-6" style={{ marginTop: "14vh" }}>
+      <div className="px-4 py-6" style={{ paddingTop: "14vh" }}>
         <center>
           <div className='flex flex-wrap items-center justify-center gap-7 w-[93%]' style={{ margin: "25px 0px" }}>
             <h2 className="text-2xl font-bold mb-6 uppercase " style={{ marginTop: "5vh" }}>All Foods</h2>

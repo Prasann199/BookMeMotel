@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { FaEye } from "react-icons/fa";
 import CustomAlert from '../CustomAlert/CustomAlert';
+import Navbar from '../Navbar/Navbar';
 
 const Login = () => {
   const formRef = useRef(null);
@@ -72,7 +73,7 @@ const Login = () => {
         setAlertMessage("Invalid credentials");
       }
     } catch (err) {
-      // console.log(err);
+      console.log(err);
       // alert("Login failed");
       setShowAlert(true)
       setAlertType("failed")
@@ -86,6 +87,7 @@ const Login = () => {
       {showAlert &&
         <CustomAlert type={alertType} message={alertMessage} onClose={() => setShowAlert(false)} />
       }
+      <Navbar />
       <div className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-br from-pink-200 via-white to-blue-200" style={{ padding: "10px" }}>
         <div
           className="w-full max-w-lg bg-white rounded-3xl shadow-xl flex flex-col md:flex-row overflow-hidden"

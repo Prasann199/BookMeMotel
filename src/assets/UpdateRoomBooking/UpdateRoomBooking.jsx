@@ -74,9 +74,11 @@ const UpdateRoomBooking = () => {
     }
   }
 
+
+
   useEffect(() => {
     getRoomBookingDetails();
-  }, [bookingData]);
+  }, []);
 
  
 
