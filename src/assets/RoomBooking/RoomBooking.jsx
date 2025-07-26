@@ -165,16 +165,22 @@ const RoomBooking = () => {
           console.log(response);
         },
         prefill: {
-          name: user.name,
-          email: user.email,
-          contact: user.phone
-        },
-        notes: {
-          address: user.address
-        },
-        theme: {
-          color: "#f97316"
-        }
+    name: user?.name || "",
+    email: user?.email || "",
+    contact: user?.phone || ""
+  },
+  notes: {
+    address: user?.address || ""
+  },
+  theme: {
+    color: "#f97316"
+  },
+  modal: {
+    escape: false,
+    ondismiss: function () {
+      alert("Payment popup closed.");
+    }
+  }
       };
 
       const rzp = new window.Razorpay(options);
