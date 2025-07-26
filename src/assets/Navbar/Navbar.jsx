@@ -166,7 +166,7 @@ const Navbar = () => {
       <nav className="bg-[#0c1a35] text-white fixed top-0 w-full z-50 shadow-md flex justify-center" style={{padding:"0px 10px"}}>
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between h-[13vh] w-[98%]">
           <div className="text-2xl font-bold font-sans tracking-wide">
-            Book<span className="text-[#ff3147] italic">Me</span>Hotel
+            Book<span className="text-[#ff3147] italic">My</span>Bed
           </div>
           <div className="flex items-center gap-4">
             <div className="flex flex-wrap items-center gap-2 justify-end w-fit">
